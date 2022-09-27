@@ -314,7 +314,7 @@ endif  # IGNORE_VENV
 install: venv
 	@echo -e "\n[make install] installing the package"
 	# conda install --yes --prefix "${VENV_DIR}" --file requirements/requirements.txt  # pinned
-	conda install --yes --prefix "${VENV_DIR}" --file requirements/requirements.in  # unpinned
+	mamba install -c conda-forge --yes --prefix "${VENV_DIR}" --file requirements/requirements.in  # unpinned
 	${PREFIX}python -m pip install -U pip
 	${PREFIX}python -m pip install . ${PIP_OPTS}
 	${PREFIX}sandbox_calc -V
@@ -323,8 +323,8 @@ install: venv
 install-dev: venv
 	@echo -e "\n[make install-dev] installing the package as editable with development dependencies"
 	# conda install --yes --prefix "${VENV_DIR}" --file requirements/dev-requirements.txt  # pinned
-	conda install --yes --prefix "${VENV_DIR}" --file requirements/requirements.in  # unpinned
-	conda install --yes --prefix "${VENV_DIR}" --file requirements/dev-requirements.in  # unpinned
+	mamba install -c conda-forge --yes --prefix "${VENV_DIR}" --file requirements/requirements.in  # unpinned
+	mamba install -c conda-forge --yes --prefix "${VENV_DIR}" --file requirements/dev-requirements.in  # unpinned
 	${PREFIX}python -m pip install -U pip
 	${PREFIX}python -m pip install -e . ${PIP_OPTS}
 	${PREFIX}pre-commit install
